@@ -44,4 +44,22 @@ public class Fronk : MonoBehaviour {
             madeInitialContact = true;
         }
     }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if(collision.gameObject.tag == "platform")
+        {
+            points += 10;
+            manager.updateScore(10, owner);
+        }
+    }
+
+    private void OnCollisionExit(Collision collision)
+    {
+        if (collision.gameObject.tag == "platform")
+        {
+            points -= 10;
+            manager.updateScore(-10, owner);
+        }
+    }
 }

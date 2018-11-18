@@ -322,6 +322,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: df9a980a85cf59248ab4993cd67b3d08, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hotseat: 0
   hotseatID: 0
 --- !u!1 &887322034
 GameObject:
@@ -484,8 +485,8 @@ GameObject:
   - component: {fileID: 1605565300}
   - component: {fileID: 1605565299}
   m_Layer: 0
-  m_Name: Cylinder
-  m_TagString: Untagged
+  m_Name: Island
+  m_TagString: platform
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
