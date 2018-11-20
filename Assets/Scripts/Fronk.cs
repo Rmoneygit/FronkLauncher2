@@ -24,13 +24,18 @@ public class Fronk : MonoBehaviour {
         {
             gameObject.GetComponent<Renderer>().material.color = Color.red;
         }
-        else if (owner == 2)
+        if (owner == 2)
         {
             gameObject.GetComponent<Renderer>().material.color = Color.blue;
         }
         if (owner == 3)
         {
             gameObject.GetComponent<Renderer>().material.color = Color.green;
+        }
+
+        if (owner == 4)
+        {
+            gameObject.GetComponent<Renderer>().material.color = Color.white;
         }
     }
 	

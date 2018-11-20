@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class IslandManager : MonoBehaviour {
 
@@ -21,15 +22,23 @@ public class IslandManager : MonoBehaviour {
     public int hotseat;
     public int hotseatID;
     Launcher launch;
+    public MenuController menuController;
 
 	// Use this for initialization
 	void Start ()
     {
         //How many players?
+
+        
+    }
+
+    public void setupGame(int numberOfPlayers)
+    {
+
         currentRound = 0;
         hotseat = 0;
-        players = new Player[4];
-        for (int i = 0; i < 4; i++)
+        players = new Player[numberOfPlayers];
+        for (int i = 0; i < players.Length; i++)
         {
             players[i] = new Player(i, 0);
         }
@@ -43,6 +52,10 @@ public class IslandManager : MonoBehaviour {
             players[i] = temp;
         }
 
+        GameObject.Find("ButtonParent").SetActive(false);
+
+
+        menuController.orderImages(players);
         launch = GameObject.Find("Launcher").GetComponent<Launcher>();
         startRound();
     }
@@ -86,25 +99,11 @@ public class IslandManager : MonoBehaviour {
                 }
             }
         }
+        menuController.orderImages(players);
     }
 
     public void updateScore(int pointsToAdd, int owner)
     {
-        /*GameObject[] f = GameObject.FindGameObjectsWithTag("fronk");
-        Fronk[] fronks = new Fronk[f.Length];
-
-        for(int i = 0; i < f.Length; i++)
-        {
-            fronks[i] = f[i].GetComponent<Fronk>();
-        }*/
-
-        /*for(int i = 0; i < players.Length; i++)
-        {
-            for(int j = 0; j < fronks.Length; j++)
-            {
-
-            }
-        }*/
 
         int location = 0;
 
@@ -119,5 +118,6 @@ public class IslandManager : MonoBehaviour {
 
         players[location].score += pointsToAdd;
         Debug.Log("Player " + owner + ": " + players[location].score + " points.");
+        menuController.updateScoreDisplay(players[location].ID, players[location].score);
     }
 }
