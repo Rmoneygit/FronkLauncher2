@@ -31,7 +31,7 @@ public class MenuController : MonoBehaviour {
     {
         for(int i = 0; i < players.Length; i++)
         {
-            for(int j = 0; j < players.Length - i - 1; j++)
+            for(int j = 0; j < players.Length; j++)
             {
                 if(players[i].ID == imageIDs[j])
                 {

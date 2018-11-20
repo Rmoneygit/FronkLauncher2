@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using System.Linq;
 
 public class IslandManager : MonoBehaviour {
 
@@ -87,18 +88,19 @@ public class IslandManager : MonoBehaviour {
 
     void orderByScore()
     {
-        for(int i = 0; i < players.Length -1; i++)
+        for(int i = 0; i < players.Length; i++)
         {
-            for(int j = 0; j < players.Length - i - 1; j++)
+            for(int j = 1; j < players.Length - i; j++)
             {
-                if(players[j].score < players[j+1].score)
+                if(players[j-1].score < players[j].score)
                 {
                     Player temp = players[j];
-                    players[j] = players[j + 1];
-                    players[j + 1] = temp;
+                    players[j] = players[j - 1];
+                    players[j - 1] = temp;
                 }
             }
         }
+
         menuController.orderImages(players);
     }
 
