@@ -20,18 +20,11 @@ public class IslandManager : MonoBehaviour {
     
     public Player[] players;
     int currentRound;
-    public int hotseat;
-    public int hotseatID;
-    Launcher launch;
+    public int hotseat; //Array location of the player in the hotseat
+    public int hotseatID; //ID number of the player in the hotseat
+    public Launcher launch;
     public MenuController menuController;
 
-	// Use this for initialization
-	void Start ()
-    {
-        //How many players?
-
-        
-    }
 
     public void setupGame(int numberOfPlayers)
     {
@@ -53,22 +46,22 @@ public class IslandManager : MonoBehaviour {
             players[i] = temp;
         }
 
-        GameObject.Find("ButtonParent").SetActive(false);
+        menuController.toggleButtons(false);
 
 
         menuController.orderImages(players);
-        launch = GameObject.Find("Launcher").GetComponent<Launcher>();
+        menuController.toggleRoundText(true);
         startRound();
     }
 	
 	void startRound()
     {
         currentRound++;
+        menuController.updateRoundDisplay(currentRound);
         orderByScore();
         hotseat = 0;
         hotseatID = players[0].ID;
-        launch.begin();
-        
+        menuController.showPlayerIsUpNote(hotseatID);
     }
 
     public void startTurn()
@@ -77,7 +70,7 @@ public class IslandManager : MonoBehaviour {
         {
             hotseat++;
             hotseatID = players[hotseat].ID;
-            launch.begin();
+            menuController.showPlayerIsUpNote(hotseatID);
         }
         else
         {

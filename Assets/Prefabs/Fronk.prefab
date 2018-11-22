@@ -24,7 +24,6 @@ GameObject:
   - component: {fileID: 65267510887635404}
   - component: {fileID: 54912063016974086}
   - component: {fileID: 114322043357904700}
-  - component: {fileID: 114694204192508126}
   m_Layer: 0
   m_Name: Fronk
   m_TagString: Untagged
@@ -131,19 +130,3 @@ MonoBehaviour:
   target: {fileID: 0}
   launch: {fileID: 0}
   madeInitialContact: 0
---- !u!114 &114694204192508126
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1719780922736428}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 59c8a2974cd709d479a3f4742beb14f0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  calculateDensity: 0
-  density: 0.75
-  normalizedVoxelSize: 0.5
-  dragInWater: 1
-  angularDragInWater: 1

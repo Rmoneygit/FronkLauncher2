@@ -9,7 +9,7 @@ public class Target : MonoBehaviour {
 
     void Start()
     {
-        canMove = true;
+        canMove = false;
     }
     
     // Update is called once per frame

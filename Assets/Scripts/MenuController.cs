@@ -6,10 +6,17 @@ using UnityEngine.UI;
 public class MenuController : MonoBehaviour {
 
     public Button twoButton, threeButton, fourButton, fiveButton;
+    public GameObject buttonParent;
     public IslandManager manager;
     public Image[] turnOrderImages; // Start in order from player 0 to 4
-    public int[] imageIDs; //Initially contains numbers 0-4 in order. Parallel array to turnOrderImages
+    private int[] imageIDs; //Initially contains numbers 0-4 in order. Parallel array to turnOrderImages
     public Vector3[] imageLocations;
+    public Text roundText;
+    public GameObject playerIsUpParent;
+    public Text playerIsUpColorText;
+    public Text playerIsUpColorTextShadow;
+    public Button OKButton;
+    public Launcher launch;
 
     // Use this for initialization
     void Start ()
@@ -19,7 +26,10 @@ public class MenuController : MonoBehaviour {
         threeButton.onClick.AddListener(delegate { manager.setupGame(3); });
         fourButton.onClick.AddListener(delegate { manager.setupGame(4); });
         fiveButton.onClick.AddListener(delegate { manager.setupGame(5); });
+        OKButton.onClick.AddListener(delegate { launch.begin(); });
         imageLocations = new Vector3[5];
+
+        imageIDs = new int[] { 0, 1, 2, 3, 4 };
 
         for(int i = 0; i < turnOrderImages.Length; i++)
         {
@@ -50,20 +60,6 @@ public class MenuController : MonoBehaviour {
 
     void physicallyReorderImages(int numberOfPlayers)
     {
-        /*for(int i = 0; i < numberOfPlayers; i++)
-        {
-            for(int j = 0; j < numberOfPlayers - i - 1; j++)
-            {
-                if(i < j && turnOrderImages[i].rectTransform.position.y < turnOrderImages[j].rectTransform.position.y )
-                {
-                    float temp = turnOrderImages[j].rectTransform.position.y;
-                    turnOrderImages[j].rectTransform.position += new Vector3(0f, turnOrderImages[i].rectTransform.position.y, 0f);
-                    turnOrderImages[i].rectTransform.position = new Vector3(0f, temp, 0f);
-
-                }
-            }
-        }*/
-
         for(int i = 0; i < numberOfPlayers; i++)
         {
             turnOrderImages[i].rectTransform.position = imageLocations[i];
@@ -80,5 +76,60 @@ public class MenuController : MonoBehaviour {
                 turnOrderImages[i].transform.Find("Score").GetComponent<Text>().text = ": " + points;
             }
         }
+    }
+
+    public void updateRoundDisplay(int round)
+    {
+        roundText.text = "Round " + round;
+    }
+
+    public void toggleButtons(bool toggle)
+    {
+        buttonParent.SetActive(toggle);
+    }
+
+    public void toggleRoundText(bool toggle)
+    {
+        roundText.gameObject.SetActive(toggle);
+    }
+
+    public void togglePlayerIsUpNote(bool toggle)
+    {
+        playerIsUpParent.SetActive(toggle);
+    }
+
+    public void showPlayerIsUpNote(int playerID)
+    {
+        if(playerID == 0)
+        {
+            playerIsUpColorText.text = "Yellow";
+            playerIsUpColorText.color = Color.yellow;
+            playerIsUpColorTextShadow.text = "Yellow";
+        }
+        else if(playerID == 1)
+        {
+            playerIsUpColorText.text = "Red";
+            playerIsUpColorText.color = Color.red;
+            playerIsUpColorTextShadow.text = "Red";
+        }
+        else if (playerID == 2)
+        {
+            playerIsUpColorText.text = "Blue";
+            playerIsUpColorText.color = Color.blue;
+            playerIsUpColorTextShadow.text = "Blue";
+        }
+        else if (playerID == 3)
+        {
+            playerIsUpColorText.text = "Green";
+            playerIsUpColorText.color = Color.green;
+            playerIsUpColorTextShadow.text = "Green";
+        }
+        else if (playerID == 4)
+        {
+            playerIsUpColorText.text = "Purple";
+            playerIsUpColorText.color = Color.magenta;
+            playerIsUpColorTextShadow.text = "Purple";
+        }
+        togglePlayerIsUpNote(true);
     }
 }

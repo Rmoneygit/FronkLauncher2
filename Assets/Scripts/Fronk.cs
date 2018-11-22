@@ -35,25 +35,14 @@ public class Fronk : MonoBehaviour {
 
         if (owner == 4)
         {
-            gameObject.GetComponent<Renderer>().material.color = Color.white;
+            gameObject.GetComponent<Renderer>().material.color = Color.magenta;
         }
     }
 	
     void OnTriggerEnter(Collider other)
     {
-        /*if(other.gameObject.tag == "target" && !madeInitialContact)
-        {
-            target.canMove = true;
-            launch.isLaunching = true;
-            manager.startTurn();
-            */
-
-
         if(other.gameObject.tag == "Water Volume" && !madeInitialContact)
         {
-            target.canMove = true;
-            launch.isLaunching = true;
-            manager.startTurn();
             madeInitialContact = true;
         }
     }
@@ -65,10 +54,7 @@ public class Fronk : MonoBehaviour {
             points += 10;
             manager.updateScore(10, owner);
             if(!madeInitialContact)
-            {
-                target.canMove = true;
-                launch.isLaunching = true;
-                manager.startTurn();
+            {               
                 madeInitialContact = true;
             }
         }
